@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
+</head>
+<body>
+     <section class="Contact">
+         <div class="content">
+             <h2>Contact Us</h2>
+              <p>Get in touch with our creative-friendly support team</p>
+         </div>
+         <div class="container">
+             <div class="ContactInfo">
+                <div class="box">
+                    <div class="icon"><img width="30" height="30" src="https://img.icons8.com/offices/30/marker.png" alt="marker"/></div>
+                     <div class="text">
+                         <h3>Address</h3>
+                         <p></p>
+                     </div>
+                </div>
+                <div class="box">
+                    <div class="icon"><img width="48" height="48" src="https://img.icons8.com/color/48/phone.png" alt="phone"/></div>
+                     <div class="text">
+                         <h3>Phone</h3>
+                         <p>+91 8234 5678</p>
+                     </div>
+                </div>
+                <div class="box">
+                    <div class="icon"><img width="48" height="48" src="https://img.icons8.com/doodle/48/new-post.png" alt="new-post"/></div>
+                     <div class="text">
+                         <h3>Email</h3>
+                         <p>CRP@gmail.com</p>
+                     </div>
+                </div>
+             </div>
+              <div class="ContactForm">
+                 <form>
+                     <h2>Send Message</h2>
+                      <div class="input-box">
+                         <input type="text" name="" required="required">
+                         <span>Full Name</span>
+                      </div>
+                      <div class="input-box">
+                        <input type="text" name="" required="required">
+                        <span>Email</span>
+                     </div>
+                     <div class="input-box">
+                         <textarea required="required"></textarea>
+                        <span>Type your Message......</span>
+                     </div>
+                     <div class="input-box">
+                        <input type="submit" name="" value="Send">
+                     </div>
+                 </form>
+              </div>
+         </div>
+     </section>
+     <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Helvetica;
+    }
+
+        .Contact
+        {
+            position: relative;
+            min-height: 100vh;
+            padding: 50px 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: url(https://image.lexica.art/full_webp/2baa5ba3-8cea-42eb-9d47-83fd4e9640c9);
+            background-size: cover;
+            
+        }   
+
+        .Contact .content
+        {
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .Contact .content h2
+        {
+            font-size: 30px;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .Contact .content p
+        {
+            font-weight: 300;
+            color: #fff;
+        }
+
+        .container
+        {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .container .ContactInfo
+        {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container .ContactInfo .box
+        {
+            position: relative;
+            padding: 20px 0;
+            display: flex;
+        }
+
+        .container .ContactInfo .box .icon
+        {
+            min-width: 60px;
+            height: 60px;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-size: 22px;
+        }
+
+        .container .ContactInfo .box .text
+        {
+            display: flex;
+            margin-left: 20px;
+            font-size: 16px;
+            color: #fff;
+            flex-direction: column;
+            font-weight: 300;
+        }
+
+        .container .ContactInfo .box .text h3
+        {
+            font-weight: 500;
+            color: #00bcd4;
+        }
+
+        .ContactForm
+        {
+            width: 40%;
+            padding: 40px;
+            background: #fff;
+        }
+
+        .ContactForm h2
+        {
+            font-size: 30px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .ContactForm .input-box
+        {
+            position: relative;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .ContactForm .input-box input ,
+        .ContactForm .input-box textarea
+        {
+            width: 100%;
+            padding: 5px 0;
+            font-size: 16px;
+            margin: 10px 0;
+            border: none;
+            border-bottom: 2px solid #333;
+            outline: none;
+            resize: none;
+        }
+
+        .ContactForm .input-box span
+        {
+            position: absolute;
+            left: 0;
+            padding: 5px 0;
+            font-size: 16px;
+            margin: 10px 0;
+            pointer-events: none;
+            transition: 0.5s;
+            color: #666;
+        }
+
+        .ContactForm .input-box input:focus ~ span ,
+        .ContactForm .input-box input:valid ~ span  ,
+        .ContactForm .input-box textarea:focus ~ span  ,
+        .ContactForm .input-box textarea:focus ~ span 
+        {
+            color: #e91e63;
+            font-size: 12px;
+            transform: translateY(-20px);
+        }
+
+        .ContactForm .input-box input[type="submit"]
+        {
+            width: 100px;
+            background: #00bcd4;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 18px;
+        }
+
+        @media (max-width: 991pz)
+        {
+            .Contact
+            {
+                padding: 50px;
+            }
+            .container
+            {
+                flex-direction: column;
+            }
+            .container .ContactInfo
+            {
+                margin-bottom: 40px;
+            }
+            .container .ContactInfo
+            {
+                width: 100%;
+            }
+
+        }
+
+
+      </style>
+</body>
+</html>

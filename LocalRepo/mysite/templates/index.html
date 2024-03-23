@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONLINE CRIME REPORTING SYSTEM</title>
+     <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+     <header>
+         <h2 class="CRP">CRP </h2>
+             <nav class="navigation">
+                <a href="#">Home</a>
+                <a href="#">Admin</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            <button class="LP">Login</button>
+            </nav>
+     </header>
+
+     <div class="K"> 
+        <span class="icon-close"><ion-icon name="close"></ion-icon></span>
+
+         <div class="loginForm">
+            <h2>Login</h2>
+             <form action="#">
+                 <div class="input-box">
+                     <span class="icon"><ion-icon name="person-sharp"></ion-icon></span>
+                     <input type="text" required>
+                     <label>Username</label>
+                 </div>
+
+                 <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="password" required>
+                    <label>Password</label>
+                </div>
+
+                 <div class="remember-forgot">
+                     <label><input type="checkbox">Save</label>
+                      <a href="#">Forgot Password?</a>
+                 </div>
+
+                  <button type="submit" class="button">Login</button>
+
+                   <div class="login-register">
+                     <p>Don't have an account?  <a href="#" class="register-link">Register</a></p>
+                   </div>
+             </form>
+         </div>
+
+         <div class="registerForm">
+            <h2>Registration</h2>
+             <form action="#">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="person-add-sharp"></ion-icon></span>
+                    <input type="text" required>
+                    <label>Username</label>
+                </div>
+
+                 <div class="input-box">
+                     <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                     <input type="email" required>
+                     <label>Email</label>
+                 </div>
+
+                 <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="password" required>
+                    <label>Password</label>
+                </div>
+
+                 <div class="remember-forgot">
+                     <label><input type="checkbox">I agree to the terms & conditions</label>
+                 </div>
+
+                  <button type="submit" class="button">Register</button>
+
+                   <div class="login-register">
+                     <p>Already have an account?  <a href="#" class="login-link">Login</a></p>
+                   </div>
+             </form>
+         </div>
+     </div>
+
+      <script src="script.js"></script>
+      <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+ <style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Helvetica;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('https://image.lexica.art/full_webp/0c05cec1-98e6-401e-9127-acc41ab3dcbd');
+    background-size: cover;
+    background-position: center;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+.CRP {
+    font-size: 2em;
+    color: white;
+    user-select: none;
+}
+
+.navigation a {
+    position: relative;
+    font-size: 1em;
+    color: aliceblue;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+
+.navigation a::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 3px;
+    background: antiquewhite;
+    border-radius: 5px;
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: .5s;
+}
+
+.navigation a:hover::after{
+    transform-origin: left;
+    transform: scaleX(1.2);
+}
+
+.navigation .LP {
+    width: 120px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid snow;
+    outline: none;
+    border-radius: 6pc;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: azure;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+}
+
+.navigation .LP:hover{
+    background: antiquewhite;
+    color: #eaedf0;
+}
+
+.K {
+    object-position: left;
+    width: 400px;
+    height: 440px;
+    background: transparent;
+    border: 2px solid rgb(247, 245, 243);
+    border-radius: 20px;
+    backdrop-filter: blur(9px);
+    box-shadow: 0 0 30px rgb(248, 247, 247);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(0);
+    transition: transform .5s ease,height .2s ease;
+}
+
+.K.active-popup {
+    transform: scale(1);
+}
+
+.K.active {
+    height: 520px;
+}
+
+.K .loginForm {
+    width: 100%;
+    padding: 40px;
+}
+
+.K .loginForm  {
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+
+.K.active .loginForm {
+    transition: none;
+    transform: translateX(-400px);
+}
+
+.K .registerForm {
+    position: absolute;
+    transition: none;
+    
+    transform: translateX(400px);
+}
+
+.K.active .registerForm {
+    transition: transform .18s ease;
+    transform: translateX(0);
+    color: whitesmoke;
+}
+    
+.K .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background: #162938;
+    font-size: 2em;
+    color: azure;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.loginForm h2{
+    font-size: 2em;
+    color: whitesmoke;
+    text-align: center;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid rgb(242, 242, 248);
+    margin: 30px 0;
+}
+
+.input-box label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: rgb(252, 252, 253);
+    font-weight: 500;
+    pointer-events: none;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+    top: -5px;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1.1em;
+    color: rgb(253, 252, 252);
+    font-weight: 600;
+    padding: 0 35px 0 5px;
+}
+
+.input-box .icon {
+    position: absolute;
+    right: 8px;
+    font-size: 1.8em;
+    color: #eef2f5;
+    line-height: 58px;
+}
+
+.remember-forgot {
+    font-size: 0.9em;
+    color: #88c8f8;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remember-forgot label input {
+    accent-color: #f8ea23;
+    margin-right: 4px;
+}
+
+.remember-forgot a {
+    color: #f82019;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.button {
+    width: 100%;
+    height: 45px;
+    background: #3da3f1;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: aliceblue;
+    font-weight: 500;
+}
+
+.login-register {
+    font-size: 0.9em;
+    color: rgb(252, 248, 248);
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+}
+
+.login-register p a {
+    color: #7abcee;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-register p a:hover {
+    text-decoration: underline;
+}
+
+</style>
+
+</body>
+
+</html>
