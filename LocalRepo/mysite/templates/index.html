@@ -2,23 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="https://img.icons8.com/pulsar-color/48/cyber-security.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ONLINE CRIME REPORTING SYSTEM</title>
-     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
      <header>
-         <h2 class="CRP">CRP </h2>
+         <h2 class="CRP" ><link rel="icon" href="https://img.icons8.com/pulsar-color/48/cyber-security.png" />CRP </h2>
              <nav class="navigation">
-                <a href="#">Home</a>
-                <a href="#">Admin</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
+                <a href="index.html">Home</a>
+                <a href="ad.html">Admin</a> 
+                <a href="About.html">About</a>
+                <a href="Co1.html">Contact</a>
             <button class="LP">Login</button>
             </nav>
      </header>
+       <div><p>Welcome</p></div>
 
-     <div class="K"> 
+     <div class="K">
         <span class="icon-close"><ion-icon name="close"></ion-icon></span>
 
          <div class="loginForm">
@@ -74,7 +75,7 @@
                      <label><input type="checkbox">I agree to the terms & conditions</label>
                  </div>
 
-                  <button type="submit" class="button">Register</button>
+                  <button type="submit" class="button">Sign Up</button>
 
                    <div class="login-register">
                      <p>Already have an account?  <a href="#" class="login-link">Login</a></p>
@@ -120,6 +121,68 @@ header{
     font-size: 2em;
     color: white;
     user-select: none;
+    animation: animate 2s linear infinite;
+}
+@keyframes animate{
+    0%{
+        transform: rotate(5deg);
+    }
+    25%{
+        transform: rotate(0deg);
+    }
+    50%{
+        transform: rotate(-5deg);
+    }
+    75%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(5deg);
+    }
+}
+
+p{
+   display: flex;
+   font-size: 6em;
+   font-weight: 600;
+    letter-spacing: 15px;
+    color: #0e3742;
+    text-transform: uppercase;
+    width: 100%;
+    text-align: right;
+    -webkit-box-reflect: below 1px linear-gradient(transparent ,#0008);
+    line-height: 0.70em;
+    outline: none;
+    animation: a 5s linear infinite;
+}
+@keyframes a
+{
+    0%,18%,20%,50.1%,60%,65.1%,80%,90.1%,92%
+    {
+        color: #0e3742;
+        text-shadow: none;
+    }
+    18.1%,20.1%,30%,50%,60.1%,65%,80.1%,90%,92.1%,100%
+    {
+        color: #fff;
+        text-shadow: 0 0 10px #1F51FF,
+        0 0 20px #1F51FF
+        0 0 40px #1F51FF
+        0 0 80px #1F51FF
+        0 0 120px #1F51FF
+    }
+    0% ,5%{
+        transform: scaleY(0) translateX(0);
+    }
+    10%{
+        transform: scaleY(1) translateX(0);
+    }
+    90%{
+        transform: scaleY(1) translateX(calc(200px - 10px));
+    }
+    95% ,100%{
+        transform: scaleY(0) translateX(calc(200px - 10px));
+    }
 }
 
 .navigation a {
@@ -166,8 +229,8 @@ header{
 }
 
 .navigation .LP:hover{
-    background: antiquewhite;
-    color: #eaedf0;
+    background: rgb(4, 183, 199);
+    color: #fcfdfd;
 }
 
 .K {
@@ -231,7 +294,7 @@ header{
     height: 40px;
     background: #162938;
     font-size: 2em;
-    color: azure;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
