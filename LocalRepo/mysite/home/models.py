@@ -4,6 +4,7 @@ from django.db import models
 class Userlogin(models.Model):
     username = models.CharField(max_length=122)
     password = models.CharField(max_length=122)
+    email = models.CharField(max_length=122)
 
 class Report(models.Model):
     reporter_name = models.CharField(max_length=122)

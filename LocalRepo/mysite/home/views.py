@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from datetime import datetime
 from home.models import Report,Userlogin 
 from django.contrib.auth.models import User       
@@ -14,16 +14,24 @@ def contact(request):
     return render(request,'contact.html')
 
 def registerpage(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        email = request.POST.get('email')
+        myuser = User.objects.create_user(username,password,email)
+        myuser.save()
+        print(username.password,email)
+        return HttpResponse("User has been created successfully!!!")
+        return redirect(request,'login.html')
     return render(request,'register.html')
 
 def userlogin(request):
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
-        print(username,password)
         user = authenticate(username=username, password=password)
         if user is not None:
-            return redirect("index.html")
+            return redirect(request,'index.html')
         else:
             return render(request,'login.html')
     return render(request,'login.html')
@@ -37,5 +45,5 @@ def report(request):
         date_of_report = request.POST.get('date of reporting')
         report = Report(reporter_name=name, reporter_email=email, criminal_desc=desc, phone=phone, date_of_report = datetime.today()) 
         report.save()
-        messages.success(request,'Your message has been sent')       
+        return HttpResponse("Your message has been sent succesfully!!!")       
     return render(request, 'index.html')
