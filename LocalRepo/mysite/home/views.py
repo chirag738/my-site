@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from datetime import datetime
 from home.models import Report,Userlogin 
 from django.contrib.auth.models import User       
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 
 # Create your views here.
 def index(request):
@@ -18,22 +18,29 @@ def registerpage(request):
     if request.method == 'POST':
         fullname = request.POST.get('full name')
         username = request.POST.get('username')
+        email = request.POST.get('email')
         pass1 = request.POST.get('password1')
         pass2 = request.POST.get('password2')
-        phone = request.POST.get('phone no')
-        email = request.POST.get('email')
+        phone = request.POST.get('email')
         if pass1 != pass2:
-            return HttpResponse("Your password is incorrect!!"),render(request,'register.html')
+            return HttpResponse("Your password does not match!!"),render(request,'register.html')
         else:
-            uname = username
-            password = pass1
-            myuser = User.objects.create_user(uname,password,email)
-            myuser.save()
-            print(username,password,email)
-            return HttpResponse("User has been created successfully!!!"),redirect(request,'login.html')
+            user = User.objects.create_user(username,pass1,email)
+            user.save()
+            return HttpResponse("User has been created successfully!!!"), redirect(request,'login.html')
     return render(request,'register.html')
 
 def userlogin(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        pass1 = request.POST.get('password')
+        print(username,pass1)
+        user = authenticate(request,username=username,password=pass1)
+        if user is not None:
+            login(request,user)
+            return redirect('index.html')
+        else:
+            return HttpResponse("Username or password is invalid.")
     return render(request,'login.html')
 
 def report(request):
@@ -47,3 +54,8 @@ def report(request):
         report.save()
         return HttpResponse("Your message has been sent succesfully!!!")       
     return render(request, 'index.html')
+
+def userlogout(request):
+    logout(request)
+    return redirect('login.html')
+    
