@@ -20,7 +20,7 @@ def registerpage(request):
         email = request.POST.get('email')
         myuser = User.objects.create_user(username,password,email)
         myuser.save()
-        print(username.password,email)
+        print(username,password,email)
         return HttpResponse("User has been created successfully!!!")
         return redirect(request,'login.html')
     return render(request,'register.html')
