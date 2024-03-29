@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from datetime import datetime
 from home.models import Report,Userlogin 
 from django.contrib.auth.models import User       
+from django.contrib.auth import authenticate,login
 
 # Create your views here.
 def index(request):
@@ -15,25 +16,24 @@ def contact(request):
 
 def registerpage(request):
     if request.method == 'POST':
+        fullname = request.POST.get('full name')
         username = request.POST.get('username')
-        password = request.POST.get('password')
+        pass1 = request.POST.get('password1')
+        pass2 = request.POST.get('password2')
+        phone = request.POST.get('phone no')
         email = request.POST.get('email')
-        myuser = User.objects.create_user(username,password,email)
-        myuser.save()
-        print(username,password,email)
-        return HttpResponse("User has been created successfully!!!")
-        return redirect(request,'login.html')
+        if pass1 != pass2:
+            return HttpResponse("Your password is incorrect!!"),render(request,'register.html')
+        else:
+            uname = username
+            password = pass1
+            myuser = User.objects.create_user(uname,password,email)
+            myuser.save()
+            print(username,password,email)
+            return HttpResponse("User has been created successfully!!!"),redirect(request,'login.html')
     return render(request,'register.html')
 
 def userlogin(request):
-    if request.method == "POST":
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            return redirect(request,'index.html')
-        else:
-            return render(request,'login.html')
     return render(request,'login.html')
 
 def report(request):

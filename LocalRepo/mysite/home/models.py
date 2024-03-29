@@ -1,6 +1,14 @@
 from django.db import models
 
 # Create your models here.
+class RegisterPage(models.Model):
+    full_name = models.CharField(max_length=122)
+    uname = models.CharField(max_length=122)
+    phone_no = models.CharField(max_length=122)
+    email = models.CharField(max_length=122)
+    pass1 = models.CharField(max_length=122)
+    pass2 = models.CharField(max_length=122)
+
 class Userlogin(models.Model):
     username = models.CharField(max_length=122)
     password = models.CharField(max_length=122)
