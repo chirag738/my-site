@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="StyleSheet.css">
-    <title>Document</title>
+    <link rel="icon" href="https://img.icons8.com/pulsar-color/48/cyber-security.png" />
+    <title>SignUp</title>
 </head>
 <body>
     <div class="Container">
-        <form action=""method='post'>
+        <span></span>
+        <span></span>
+        <span></span>
+        <form action="" method="post">
+            {% csrf_token %}
             <h2>Registration</h2>
             <div class="content">
                 <div class="input-box">
@@ -35,7 +39,7 @@
                     <label for="confirm-password">Confirm Password</label>
                     <input type="text"placeholder="Confirm Your Password" name="confirmPassword" required>
                 </div>  
-                <span class="gender-title">Gender</span>
+                <span class="gender-title" style="color: #fff;">Gender</span>
                 <div class="gender-category">
                     <input type="radio"name="gender"id="male">
                     <label for="male">Male</label>
@@ -46,16 +50,16 @@
                 </div>
             </div>
             <div class="alert">
-                <p>By clicking Sign Up, you agree to our <a href="#">Terms, </a> <a href="#">Privacy Policy</a> and <a
-                href="#">Cookies Policy.</a> You may receive SMS notifications from us and can opt out at anytime.</p>
+                <p>Already have an account?  <a href="/userlogin" class="login-link">Login</a></p>
             </div>
             <div class="button-container">
                 <button type="submit">Register</button>
             </div>
         </form>
     </div>
-    <style>
-    *{
+
+     <style>
+        *{
     padding: 0;
     margin: 0;
     font-family: sans-serif;
@@ -66,7 +70,8 @@ body{
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: linear-gradient(#380036 , #0CBABA)
+    background-image: linear-gradient(#380036 , #0CBABA);
+    background: url(https://image.lexica.art/full_webp/27b10ef8-a669-4760-a349-8d0ba2469ac0);
 }
 .Container{
     max-width: 650px;
@@ -77,12 +82,13 @@ body{
     background: rgba(0,0,0,0.2);
     box-shadow: 0 15px 20px rgba(0,0,0,0.6);
 }
+
 h2{
     font-size: 26px;
     font-weight: bold;
     text-align: left;
     color: #fff;
-    adding-bottom: 8px;
+    padding-bottom: 8px;
     border-bottom: 1px solid silver;
     }
 .content{
@@ -118,14 +124,18 @@ h2{
         border: 1px solid #ccc;
         outline: none; }
 .input-box input:is(:focus,:valid){
-        box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+        box-shadow: 0 3px 6px rgba(6, 161, 233, 0.2);
         }
+
 .gender-category label{
         padding: 0 20px 0 5px;
-        font-size: 14px;}
+        font-size: 14px;
+    }
+
 .gender-category{
     color: gainsboro;
 }         
+
 .gender-category label, gender-category input {
     cursor: pointer;}
                     
@@ -137,60 +147,39 @@ h2{
     padding: 10px;
     line-height: 1.5;
 }
-.alert a{
 
+.alert a{
     font-weight: bold;
-    
     text-decoration: none;
-    
-    color: skyblue;}
+    color: skyblue;
+}
     
 .alert a:hover{
-    
     font-weight: bold;
-    
     text-decoration: underline;
-    
     color: #380036;
-    
     }
     
 .button-container{
-    
     margin: 15px 0;
-    
     }
     
-.button-container button{
-    
+.button-container button{  
     width: 100%;
-    
     margin-top: 10px;
-    
     padding: 10px;
-    
     display: block;
-    
     font-size: 20px;
-    
     color: #fff;
-    
     border: none;
-
-border-radius: 5px;
-
-background-image: linear-gradient(to right, #aa076b, #61045f);
-
-cursor: pointer;
-
-transition: 0.3s;
-
+    border-radius: 5px;
+    background-image: linear-gradient(to right, #054479, #1c90c5);
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 .button-container button:hover{
-
-background-image: linear-gradient(to right, #61045f, #aa076b);
-
+background-image: linear-gradient(to right, #054479, #1c90c5);
 }
 @media (max-width:600px){
     .Container{
@@ -219,6 +208,7 @@ background-image: linear-gradient(to right, #61045f, #aa076b);
     width: 0;
     }
     }}
-    </style>
+     </style>
+
 </body>
 </html>

@@ -3,278 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ONLINE CRIME REPORTING SYSTEM</title>
-     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="https://img.icons8.com/pulsar-color/48/cyber-security.png" />
+    <title>SignIn</title>
 </head>
 <body>
-     <header>
-         <h2 class="CRP">CRP </h2>
-         {% csrf_token %}
-             <nav class="navigation">
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
-            <button class="LP"><a href="/index">Login</a></button>
-            </nav>
-     </header>
-
-     <div class="K">
-        <span class="icon-close"><ion-icon name="close"></ion-icon></span>
-         <div class="loginForm">
-            <h2>Login</h2>
-             <form action="#" method="post">
-                 <div class="input-box">
-                     <span class="icon"><ion-icon name="mail"></ion-icon></span>
-                     <input type="Username" required>
-                     <label>Username</label>
-                 </div>
-                 <div class="input-box">
-                    <span class="icon"><ion-icon name="document-lock"></ion-icon></span>
-                    <input type="password" required>
-                    <label>Password</label>
-                </div>
-                 <div class="remember-forgot">
-                     <label><input type="checkbox">Save</label>
-                      <a href="#">Forgot Password?</a>
-                 </div>
-                  <button type="submit" class="button">Login</button>
-                   <div class="login-register">
-                     <p>Don't have an account?  <a href="register.html" class="register-link">Register</a></p>
-                   </div>
-             </form>
-         </div>
+     <div class="Container">
+         <span></span>
+         <span></span>
+         <span></span>
+        <form id="signinform" method="post">
+            {% csrf_token %}
+           <h2>Login</h2>
+              <div class="inputBox">
+                 <input type="text" placeholder="Username">
+             </div>
+             <div class="inputBox">
+                <input type="password" placeholder="Password">
+            </div>
+            <div class="inputBox">
+                 <a href="#">Forgot Password</a>
+                 <a href="/register" id="signup">SignUp</a>
+            </div>
+            <div class="inputBox">
+                <input type="submit" value="Sign in">
+            </div>
+        </div>
+        </form>
      </div>
 
-      <script src="script.js"></script>
-      <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-      <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+      <script>
+        let signup = document.querySelector('#signup');
+        let body = document.querySelector('body');
+        signup.onclick = function(){
+            body.classList.add('signup');
+        }
+      </script>
+
  <style>
+
     *{
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: Helvetica;
-}
+        font-family: 'Poppins' ,sans-serif;
+    }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: url('https://online.maryville.edu/wp-content/uploads/sites/97/2023/09/MVU-BACRIM-2020-Q1-Skyscraper_-What-is-Criminology_-The-Study-of-Crime-the-Criminal-Mind-header-v1.jpg');
-    background-size: cover;
-    background-position: center;
-}
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh ;
+    }
 
-header{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 99;
-}
+    body::before{
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:url(https://image.lexica.art/full_webp/27b10ef8-a669-4760-a349-8d0ba2469ac0);
+        background-attachment: fixed;
+        background-size:cover ;
+        background-position: center;
+    }
 
-.CRP {
-    font-size: 2em;
-    color: white;
-    user-select: none;
-}
+    body::after{
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:url(https://image.lexica.art/full_webp/3b4725cf-a1de-43e7-a0d8-bedd39b4a7cc);
+        background-attachment: fixed;
+        background-size:cover ;
+        background-position: center;
+        opacity: 0;
+        transition: 0.5s;
+    }
 
-.navigation a {
-    position: relative;
-    font-size: 1.1em;
-    color: aliceblue;
-    text-decoration: none;
-    font-weight: 500;
-    margin-left: 40px;
-}
+    body.signup::after{
+        opacity: 1;
+    }
 
-.navigation a::after{
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    width: 100%;
-    height: 3px;
-    background: antiquewhite;
-    border-radius: 5px;
-    transform-origin: left;
-    transform: scaleX(0);
-    transition: .5s;
-}
+    .Container{
+        position: absolute;
+        width: 350px;
+        height: 340px;
+        border-radius: 15px;
+        box-shadow: 0 5px 25px rgba(0 ,0 ,0 ,0.25);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        transition: 0.5s;
+        overflow: hidden;
+    }
 
-.navigation a:hover::after{
-    transform-origin: left;
-    transform: scaleX(1.2);
-}
+    body.signup .Container{
+        height: 450px;
+        width: 650px;
+        margin: 0 28px;
+        border-radius: 10px;
+        overflow: hidden;
+    }
 
-.navigation .LP {
-    width: 120px;
-    height: 50px;
-    background: transparent;
-    border: 2px solid snow;
-    outline: none;
-    border-radius: 6pc;
-    cursor: pointer;
-    font-size: 1.1em;
-    color: azure;
-    font-weight: 500;
-    margin-left: 40px;
-    transition: .5s;
-}
+    .Container::before{
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: repeating-conic-gradient(from var(--a) ,#45f3ff 0% ,#45f3ff 10% ,transparent 10% ,transparent 80% ,#45f3ff 100%);
+        border-radius: 25px;
+        animation: animate 2.5s linear infinite;
+    }
 
-.navigation .LP:hover{
-    background: antiquewhite;
-    color: #162938;
-}
+    body.signup .Container::before{
+        filter: hue-rotate(140deg);
+    } 
+    @property --a{
+        syntax: '<angle>';
+        inherits: false;
+        initial-value: 0deg;
+    }
+    @keyframes animate{
+        0%{
+            --a: 0deg
+        }
+        100%{
+            --a: 360deg
+        }
+    }
 
-.K {
-    object-position: left;
-    width: 400px;
-    height: 440px;
-    background: transparent;
-    border: 2px solid rgb(247, 245, 243);
-    border-radius: 20px;
-    backdrop-filter: blur(9px);
-    box-shadow: 0 0 30px black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
+    .Container span{
+        position: absolute;
+        inset: 5px;
+        overflow: hidden;
+        border-radius: 15px;
+    }
 
-.K .loginForm {
-    width: 100%;
-    padding: 40px;
-}
+    .Container span::before{
+        content: '';
+        position: absolute;
+        inset: 5px;
+        background: url(https://image.lexica.art/full_webp/27b10ef8-a669-4760-a349-8d0ba2469ac0);
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        filter: blur(10px);
+    }
 
-.K .icon-close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 40px;
-    height: 40px;
-    background: #162938;
-    font-size: 2em;
-    color: azure;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom-left-radius: 20px;
-    cursor: pointer;
-    z-index: 1;
-}
+    .Container span::after{
+        content: '';
+        position: absolute;
+        inset: 5px;
+        background: url(https://image.lexica.art/full_webp/27b10ef8-a669-4760-a349-8d0ba2469ac0);
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        filter: blur(15px);
+    }
 
-.loginForm h2{
-    font-size: 2em;
-    color: rgb(16, 16, 17);
-    text-align: center;
-}
+    body.signup .Container span::before ,
+    body.signup .Container span::after{
+        background: url(https://image.lexica.art/full_webp/3b4725cf-a1de-43e7-a0d8-bedd39b4a7cc);
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        filter: blur(15px);
+    }
 
-.input-box {
-    position: relative;
-    width: 100%;
-    height: 50px;
-    border-bottom: 2px solid rgb(16, 16, 17);
-    margin: 30px 0;
-}
+    form{
+        position: absolute;
+        left: 0;
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+        transition: 0.5s;
+    }
 
-.input-box label{
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    transform: translateY(-50%);
-    font-size: 1em;
-    color: rgb(16, 16, 17);
-    font-weight: 500;
-    pointer-events: none;
-}
+    body.signup form#signinform{
+        left: -100%;
+    }
 
-.input-box input:focus~label,
-.input-box input:valid~label {
-    top: -5px;
-}
+    form h2{
+        position: relative;
+        color: #fff;
+        font-size: 1.5em;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
 
-.input-box input {
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    border: none;
-    outline: none;
-    font-size: 1.1em;
-    color: rgb(12, 3, 3);
-    font-weight: 600;
-    padding: 0 35px 0 5px;
-}
+    form .inputBox{
+        position: relative;
+        width: 70%;
+        display: flex;
+        justify-content: space-between;
+    }
 
-.input-box .icon {
-    position: absolute;
-    right: 8px;
-    font-size: 1.8em;
-    color: #162938;
-    line-height: 58px;
-}
+    form .inputBox a{
+        color: #fff;
+        text-decoration: wavy;
+        font-size: 0.85em;
+    }
 
-.remember-forgot {
-    font-size: 0.9em;
-    color: #162938;
-    font-weight: 500;
-    margin: -15px 0 15px;
-    display: flex;
-    justify-content: space-between;
-}
+    form .inputBox a:nth-child(2){
+        text-decoration: underline;
+    }
 
-.remember-forgot label input {
-    accent-color: #162938;
-    margin-right: 4px;
-}
+    form .inputBox input{
+        width: 100%;
+        outline: none;
+        border: 1px solid rgba(255 ,255 ,255 ,0.25);
+        background: rgba(0 ,0 ,0 ,0.25);
+        padding: 6px 15px;
+        border-radius: 4px;
+        font-size: 0.85em;
+        color: #fff;
+    }
 
-.remember-forgot a {
-    color: #162938;
-    text-decoration: none;
-}
+    form .inputBox input::placeholder{
+        color: rgba(255 ,255 ,255 ,0.5);
+    }
 
-.remember-forgot a:hover {
-    text-decoration: underline;
-}
-
-.button {
-    width: 100%;
-    height: 45px;
-    background: #162938;
-    border: none;
-    outline: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1em;
-    color: aliceblue;
-    font-weight: 500;
-}
-
-.login-register {
-    font-size: 0.9em;
-    color: black;
-    text-align: center;
-    font-weight: 500;
-    margin: 25px 0 10px;
-}
-
-.login-register p a {
-    color: #162938;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.login-register p a:hover {
-    text-decoration: underline;
-}
-
-</style>
-
+    form .inputBox input[type="submit"]{
+        background: #0b8bf5;
+        font-weight: 500;
+        cursor: pointer;
+    }
+ </style>
 </body>
-
 </html>

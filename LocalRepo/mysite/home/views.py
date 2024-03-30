@@ -38,9 +38,9 @@ def userlogin(request):
         user = authenticate(request,username=username,password=pass1)
         if user is not None:
             login(request,user)
-            return redirect('index.html')
+            return HttpResponse("User has logged in successfully!!!"),redirect('index.html')
         else:
-            return HttpResponse("Username or password is invalid.")
+            return HttpResponse("Username or password is invalid."),render(request,'login.html')
     return render(request,'login.html')
 
 def report(request):
@@ -52,10 +52,5 @@ def report(request):
         date_of_report = request.POST.get('date of reporting')
         report = Report(reporter_name=name, reporter_email=email, criminal_desc=desc, phone=phone, date_of_report = datetime.today()) 
         report.save()
-        return HttpResponse("Your message has been sent succesfully!!!")       
-    return render(request, 'index.html')
-
-def userlogout(request):
-    logout(request)
-    return redirect('login.html')
-    
+        return HttpResponse("Your report has been registered succesfully!!!")       
+    return render(request,'report.html')

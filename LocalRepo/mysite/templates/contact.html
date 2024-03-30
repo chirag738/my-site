@@ -3,242 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://img.icons8.com/pulsar-color/48/cyber-security.png" />
     <title>Contact Us</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous">
 </head>
 <body>
-     <section class="Contact">
-         <div class="content">
-             <h2>Contact Us</h2>
-              <p>Get in touch with our creative-friendly support team</p>
-         </div>
-         <div class="container">
-             <div class="ContactInfo">
-                <div class="box">
-                    <div class="icon"><img width="30" height="30" src="https://img.icons8.com/offices/30/marker.png" alt="marker"/></div>
-                     <div class="text">
-                         <h3>Address</h3>
-                         <p></p>
-                     </div>
-                </div>
-                <div class="box">
-                    <div class="icon"><img width="48" height="48" src="https://img.icons8.com/color/48/phone.png" alt="phone"/></div>
-                     <div class="text">
-                         <h3>Phone</h3>
-                         <p>+91 8234 5678</p>
-                     </div>
-                </div>
-                <div class="box">
-                    <div class="icon"><img width="48" height="48" src="https://img.icons8.com/doodle/48/new-post.png" alt="new-post"/></div>
-                     <div class="text">
-                         <h3>Email</h3>
-                         <p>CRP@gmail.com</p>
-                     </div>
-                </div>
-             </div>
-              <div class="ContactForm">
-                 <form>
-                     <h2>Send Message</h2>
-                      <div class="input-box">
-                         <input type="text" name="" required="required">
-                         <span>Full Name</span>
-                      </div>
-                      <div class="input-box">
-                        <input type="text" name="" required="required">
-                        <span>Email</span>
-                     </div>
-                     <div class="input-box">
-                         <textarea required="required"></textarea>
-                        <span>Type your Message......</span>
-                     </div>
-                     <div class="input-box">
-                        <input type="submit" name="" value="Send">
-                     </div>
-                 </form>
-              </div>
-         </div>
-     </section>
+     <div>
+    <nav class="navigation">
+        <a href="/home">Home</a>
+    </nav>
+</div>
+     <div class="contact-container">
+         <form action="https://api.web3forms.com/submit" method="POST" class="contact-left">
+            <div class="contact-left-title">
+                <h2>Contact Us</h2>
+                <p>Get in touch with our creative-friendly support team</p>
+                  <hr>
+            </div>
+            <input type="hidden" name="access_key" value="7a3faee9-774c-4252-a61f-10b80953971a">
+            <input type="text" name="name" placeholder="Your Name" class="contact-inputs" required>
+            <input type="email" name="email" placeholder="Your Email" class="contact-inputs" required>
+             <textarea name="message" placeholder="Your Messaage" class="contact-inputs required"></textarea>
+             <button type="submit">Submit <img width="30" height="30" src="https://img.icons8.com/laces/64/arrow.png" alt="arrow"/></button>
+         </form>
+         
+     </div>
+
      <style>
         *{
-            margin: 0;
-            padding: 0;
+            padding: 0px;
+            margin: 0px;
             box-sizing: border-box;
-            font-family: Helvetica;
-    }
+        }
 
-        .Contact
+        body{
+            font-family: "Outfit";
+            background: linear-gradient(135deg, rgb(82, 229, 231) 10%, rgb(19, 12, 183) 100%);
+        }
+
+        .navigation a
         {
-            position: relative;
-            min-height: 100vh;
-            padding: 50px 100px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            background: url(https://image.lexica.art/full_webp/2baa5ba3-8cea-42eb-9d47-83fd4e9640c9);
-            background-size: cover;
-            
-        }   
+            text-align: right;
+            text-decoration: none;
+            color: #f7f4f4;
+            position: absolute;
+            font-size: 1em;
+            font-weight: bold;
+            margin-left: 40px;
+        }
 
-        .Contact .content
+        .navigation a::after
+        {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 100%;
+            height: 2px;
+            background: rgb(243, 80, 4);
+            border-radius: 4px;
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: .5s;
+        }
+
+        .contact-container .contact-left-title
         {
             max-width: 800px;
             text-align: center;
         }
-
-        .Contact .content h2
+        
+        .contact-container .contact-left-title h2
         {
-            font-size: 30px;
+            font-size: 40px;
             font-weight: 500;
             color: #fff;
         }
 
-        .Contact .content p
+        .contact-container .contact-left-title p
         {
+            font-size: 25px;
             font-weight: 300;
             color: #fff;
         }
 
-        .container
-        {
-            width: 100%;
+        .contact-container{
+            height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            margin-top: 30px;
+            justify-content: space-evenly;
+            /*background: url(https://image.lexica.art/full_webp/2baa5ba3-8cea-42eb-9d47-83fd4e9640c9);*/
+            background: url(https://image.lexica.art/full_webp/49a0679b-5e12-49e8-9af2-8c16e9ee227f);
+            background-size: cover;
         }
 
-        .container .ContactInfo
-        {
-            width: 50%;
+        .contact-left{
             display: flex;
             flex-direction: column;
+            align-items: start;
+            gap: 20px;
         }
 
-        .container .ContactInfo .box
-        {
-            position: relative;
-            padding: 20px 0;
-            display: flex;
-        }
-
-        .container .ContactInfo .box .icon
-        {
-            min-width: 60px;
-            height: 60px;
-            background: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 50%;
-            font-size: 22px;
-        }
-
-        .container .ContactInfo .box .text
-        {
-            display: flex;
-            margin-left: 20px;
-            font-size: 16px;
-            color: #fff;
-            flex-direction: column;
-            font-weight: 300;
-        }
-
-        .container .ContactInfo .box .text h3
-        {
-            font-weight: 500;
-            color: #00bcd4;
-        }
-
-        .ContactForm
-        {
-            width: 40%;
-            padding: 40px;
-            background: #fff;
-        }
-
-        .ContactForm h2
-        {
+        .contact-left-title h2{
+            font-weight: 600;
+            color: #fdfafd;
             font-size: 30px;
-            color: #333;
-            font-weight: 500;
+            margin-bottom: 5px;
         }
 
-        .ContactForm .input-box
-        {
-            position: relative;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .ContactForm .input-box input ,
-        .ContactForm .input-box textarea
-        {
-            width: 100%;
-            padding: 5px 0;
-            font-size: 16px;
-            margin: 10px 0;
+        .contact-left-title hr{
             border: none;
-            border-bottom: 2px solid #333;
+            width: 680px;
+            height: 5px;
+            background-color: #fffeff;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .contact-inputs{
+            width: 400px;
+            height: 50px;
+            border: orange;
             outline: none;
-            resize: none;
+            padding-left: 25px;
+            font-weight: 500;
+            color: #0a0101;
+            border-radius: 50px;
+            background: white;
         }
 
-        .ContactForm .input-box span
-        {
-            position: absolute;
-            left: 0;
-            padding: 5px 0;
+        .contact-left textarea{
+            height: 140px;
+            padding-top: 15px;
+            border-radius: 20px;
+            color:black;
+        }
+
+        .contact-inputs:focus{
+            border: 2px solid orange;
+        }
+
+        .contact-inputs::placeholder{
+            color: #080101;
+        }
+
+        .contact-inputs:focus + .placeholder{
+            top: -10px;
+            color: orangered;
+            background-color: orangered;
+        }
+
+        .contact-left button{
+            display: flex;
+            align-items: center;
+            padding: 15px 30px;
             font-size: 16px;
-            margin: 10px 0;
-            pointer-events: none;
-            transition: 0.5s;
-            color: #666;
-        }
-
-        .ContactForm .input-box input:focus ~ span ,
-        .ContactForm .input-box input:valid ~ span  ,
-        .ContactForm .input-box textarea:focus ~ span  ,
-        .ContactForm .input-box textarea:focus ~ span 
-        {
-            color: #e91e63;
-            font-size: 12px;
-            transform: translateY(-20px);
-        }
-
-        .ContactForm .input-box input[type="submit"]
-        {
-            width: 100px;
-            background: #00bcd4;
             color: #fff;
+            gap: 10px;
             border: none;
+            border-radius: 50px;
+            background: radial-gradient(circle at 12.3% 19.3%, rgb(85, 88, 218) 0%, rgb(95, 209, 249) 100.2%);
             cursor: pointer;
-            padding: 10px;
-            font-size: 18px;
         }
 
-        @media (max-width: 991pz)
-        {
-            .Contact
-            {
-                padding: 50px;
-            }
-            .container
-            {
-                flex-direction: column;
-            }
-            .container .ContactInfo
-            {
-                margin-bottom: 40px;
-            }
-            .container .ContactInfo
-            {
-                width: 100%;
-            }
-
+        .contact-left button img{
+            height: 15px;
+            color:transparent;
         }
 
+        .contact-right img{
+            width: 500px;
+        }
 
-      </style>
+        @media (max-width:800px){
+            .contact-inputs{
+                width: 80vw;
+            }
+            .contact-right{
+                display: none;
+            }
+        }
+            
+        
+     </style>
+    
 </body>
 </html>

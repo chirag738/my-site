@@ -20,4 +20,3 @@ class Report(models.Model):
     crime_desc = models.TextField()
     phone = models.CharField(max_length=122)
     date_of_report = models.DateField()
-
