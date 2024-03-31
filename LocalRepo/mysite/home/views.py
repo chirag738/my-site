@@ -3,6 +3,7 @@ from datetime import datetime
 from home.models import Report,Userlogin 
 from django.contrib.auth.models import User       
 from django.contrib.auth import authenticate,login,logout
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 def index(request):
@@ -16,40 +17,41 @@ def contact(request):
 
 def registerpage(request):
     if request.method == 'POST':
-        fullname = request.POST.get('full name')
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        pass1 = request.POST.get('password1')
-        pass2 = request.POST.get('password2')
-        phone = request.POST.get('email')
+        fullname = request.POST['name']
+        username = request.POST['Username']
+        email = request.POST['email']
+        pass1 = request.POST['password']
+        pass2 = request.POST['confirmPassword']
+        phone = request.POST['phone']
         if pass1 != pass2:
-            return HttpResponse("Your password does not match!!"),render(request,'register.html')
-        else:
-            user = User.objects.create_user(username,pass1,email)
-            user.save()
-            return HttpResponse("User has been created successfully!!!"), redirect(request,'login.html')
+            return HttpResponse("Your passwords do not match!!")
+        if User.objects.filter(username=username).exists():
+            return HttpResponse("Username already exists. Please choose a different username.")
+        user = User.objects.create_user(username, email, pass1)
+        user.save()
+        return redirect('userlogin/')
     return render(request,'register.html')
 
 def userlogin(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        pass1 = request.POST.get('password')
+        username = request.POST['Username']
+        pass1 = request.POST['Password']
         print(username,pass1)
         user = authenticate(request,username=username,password=pass1)
         if user is not None:
             login(request,user)
-            return HttpResponse("User has logged in successfully!!!"),redirect('index.html')
+            return redirect(request,'/index')
         else:
-            return HttpResponse("Username or password is invalid."),render(request,'login.html')
-    return render(request,'login.html')
+            return render(request,'login.html')
+    return render('/login/')
 
 def report(request):
     if request.method == "POST":
-        reporter_name = request.POST.get('reporter name')
-        reporter_email = request.POST.get('reporter email-id')
-        criminal_desc = request.POST.get('criminal desc')
-        phone = request.POST.get('phone no')
-        date_of_report = request.POST.get('date of reporting')
+        reporter_name = request.POST.get('name')
+        reporter_email = request.POST.get('email')
+        criminal_desc = request.POST.get('description')
+        phone = request.POST.get('phone')
+        date_of_report = request.POST.get('date')
         report = Report(reporter_name=name, reporter_email=email, criminal_desc=desc, phone=phone, date_of_report = datetime.today()) 
         report.save()
         return HttpResponse("Your report has been registered succesfully!!!")       
