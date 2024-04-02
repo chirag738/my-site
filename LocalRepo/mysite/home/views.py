@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 # Create your views here.
 def index(request):
     return render(request,'index.html')
-
+    
 def aboutus(request):
     return render(request,'aboutus.html')
 
@@ -40,10 +40,13 @@ def userlogin(request):
         user = authenticate(request,username=username,password=pass1)
         if user is not None:
             login(request,user)
-            return redirect(request,'/index')
+        # url = "/"
+        # return HttpResponseRedirect(url)
+            return redirect('/index')
         else:
             return render(request,'login.html')
-    return render('/login/')
+    return render(request,'login.html')
+    # return render(request,'register.html')
 
 def report(request):
     if request.method == "POST":
