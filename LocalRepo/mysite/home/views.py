@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from datetime import datetime
-from home.models import Report,Userlogin 
+from home.models import Report 
 from django.contrib.auth.models import User       
 from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponseRedirect
@@ -31,6 +31,9 @@ def registerpage(request):
         user.save()
         return redirect('userlogin/')
     return render(request,'register.html')
+
+def page(request):
+    return render(request,'page.html')
 
 def userlogin(request):
     if request.method == 'POST':

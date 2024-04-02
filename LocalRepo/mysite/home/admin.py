@@ -5,5 +5,3 @@ from home.models import *
 
 # Register your models here.
 admin.site.register(Report)
-admin.site.register(Userlogin)
-admin.site.register(RegisterPage)

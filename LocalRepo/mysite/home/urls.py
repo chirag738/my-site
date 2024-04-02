@@ -12,5 +12,5 @@ urlpatterns = [
     path('about/', views.aboutus, name='about'),
     path('report/',views.report, name='report'),
     path('index', views.index, name='home'),
-
+    path('page/',views.page, name='complaint'),
 ]
