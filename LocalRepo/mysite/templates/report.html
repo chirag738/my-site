@@ -32,7 +32,7 @@
   
 <fieldset width="50">
 <legend>Your Details</legend>
-<form>
+<form method="post" action="/report">
     <label for="A">First Name:</label>
     <input type="text" placeholder="Enter your First Name" id="A" required> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -76,7 +76,7 @@
 
 <fieldset width="50">
 <legend>Crime Details</legend>
-<form>
+<form method="post" action="/report">
   <label for="A">Criminal Name:</label>
   <input type="text" placeholder="Enter Criminal Name" id="A"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -120,8 +120,7 @@
 <label for="Terms">I hereby confirm that all the details given by me are True and I agree with the Terms and Conditions.</label>
 
 <br><br>
-<input type="submit"><br><br>
-
+<a href="/report"><button>Submit</button></a><br><br>
 <style>
 *{
       margin: 0px;
