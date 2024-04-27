@@ -13,4 +13,5 @@ urlpatterns = [
     path('report/',views.details, name='report'),
     path('index', views.index, name='home'),
     path('page/',views.page, name='complaint'),
+    path('page',views.page, name='complaint'),
 ]

@@ -68,6 +68,10 @@ TEMPLATES = [
             ],
         },
     },
+    {
+        'BACKEND': "django.template.backends.jinja2.Jinja2",
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
+    }
 ]
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
@@ -130,3 +134,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+APPEND_SLASH = False

@@ -67,16 +67,16 @@
 
     <label>Address</label> <br>
     <textarea placeholder="Enter your current Address" rows="5" cols="60" required></textarea> <br><br>
-
+    <input type="submit">
     <input type="reset"  placeholder="CLEAR">
-</form>
+<!--</form>-->
 </fieldset>
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <fieldset width="50">
 <legend>Crime Details</legend>
-<form method="post" action="/report">
+<!--<form method="post" action="/report">-->
   <label for="A">Criminal Name:</label>
   <input type="text" placeholder="Enter Criminal Name" id="A"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -111,7 +111,7 @@
 
   <label>Clue</label> <br>
   <textarea placeholder="Give some clue if any" rows="5" cols="50"></textarea> <br><br>
-
+  <input type="submit">
   <input type="reset">
 </form>
 </fieldset> <br><hr><br>
@@ -119,8 +119,58 @@
 <input type="checkbox" id="Terms" value="yes">
 <label for="Terms">I hereby confirm that all the details given by me are True and I agree with the Terms and Conditions.</label>
 
-<br><br>
-<a href="/report"><button>Submit</button></a><br><br>
+<br><br><br><br>
+     <title>Your details</title>
+     <table>
+        <tr>
+            <td>First Name</td>
+            <td>Middle Name</td>
+            <td>Last Name</td>
+            <td>Age</td>
+            <td>Email id</td>
+            <td>Mobile no</td>
+            <td>Date</td>
+            <td>Address</td>
+        </tr>
+        {% for i in your_det %}
+        <tr>
+            <td>{i.first_name}</td>
+            <td>{i.middle_name}</td>
+            <td>{i.last_name}</td>
+            <td>{i.age}</td>
+            <td>{i.email_id}</td>
+            <td>{i.mobile_no}</td>
+            <td>{i.date}</td>
+            <td>{i.address}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      <br><br>
+        <title>Crime details</title>
+     <table>
+        <tr>
+            <td>First Name</td>
+            <td>Middle Name</td>
+            <td>Last Name</td>
+            <td>Age</td>
+            <td>Email id</td>
+            <td>Mobile no</td>
+            <td>Date</td>
+            <td>Address</td>
+        </tr>
+        {% for i in cr_details %}
+        <tr>
+            <td>{i.criminal_name}</td>
+            <td>{i.middle_name}</td>
+            <td>{i.last_name}</td>
+            <td>{i.age}</td>
+            <td>{i.email_id}</td>
+            <td>{i.mobile_no}</td>
+            <td>{i.date}</td>
+            <td>{i.address}</td>
+        </tr>
+        {% endfor %}
+      </table>
 <style>
 *{
       margin: 0px;
