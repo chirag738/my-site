@@ -1,9 +1,10 @@
 from django.shortcuts import render, HttpResponse, redirect
 from datetime import datetime
-from home.models import YourDetail, CrimeDetail 
+from home.models import YourDetail, CrimeDetail, CrimeDetailForm, YourDetailForm 
 from django.contrib.auth.models import User       
 from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import permission_required
 import random
 
 # Create your views here.
@@ -39,70 +40,29 @@ def page(request):
 def userlogin(request):
     if request.method == 'POST':
         username = request.POST['Username']
-        pass1 = request.POST['Password']
-        print(username,pass1)
-        user = authenticate(request,username=username,password=pass1)
+        password = request.POST['Password']
+        user = authenticate(request, username=username, password=password)
         if user is not None:
-            login(request,user)
-        # url = "/"
-        # return HttpResponseRedirect(url)
-            return redirect('/page')
+            login(request, user)
+            return redirect('complaint')
         else:
-            return render(request,'login.html')
-    return render(request,'login.html',locals())
-    # return render(request,'register.html')
+            return render(request, 'login.html', {'error': 'Invalid credentials'})
+    return render(request, 'login.html')
 
 def report(request):
     if request.method == "POST":
-        name1 = request.POST.get('First Name')
-        name2 = request.POST.get('Middle Name')
-        name3 = request.POST.get('Last Name')
-        age = request.POST.get('age')
-        email = request.POST.get('email id')
-        mobile = request.POST.get('mobile no')
-        date = request.POST.get('date')
-        address = request.POST.get('address') 
-        if your_det.is_valid():
-            your_det = YourDetail.objects.create_user(
-                name1=first_name,
-                name2=middle_name,
-                name3=last_name,
-                age=age,
-                email=email_id,
-                date=date,
-                mobile=mobile_no,
-                address=address
-            )
-            your_det.save()
-            return HttpResponse(request,"Your details has been registered successfully!!!")
-        case_id = generate_random_id()
-        crim_name = request.POST.get('criminal type')
-        nickname = request.POST.get('criminal nickname')
-        cr_type = request.POST.get('crime type')
-        date_crime = request.POST.get('date of crime')
-        cr_age = request.POST.get('criminal age')
-        gender = request.POST.get('gender')
-        cr_mob_no = request.POST.get('criminal mobile no')
-        clue = request.POST.get('clue about criminal')
-        cr_spot = request.POST.get('crime spot')
-        case_status = "Pending"
-        if cr_details.is_valid():
-            cr_details = CrimeDetail.objects.create_user(
-                case_id=case_id,
-                crim_name=criminal_name,
-                nickname=nick_name,
-                cr_type=crime_type,
-                date_crime=date_of_crime,
-                cr_age=criminal_age,
-                gender=gender,
-                cr_mob_no=crime_mob_no,
-                clue=clue,
-                cr_spot=crime_spot,
-                case_status=cs_status
-            )
-            cr_details.save()
-            return redirect('popup.html')
-    return render(request,'report.html',locals())
+        your_det_form = YourDetailForm(request.POST)
+        cr_det_form = CrimeDetailForm(request.POST)
+        if your_det_form.is_valid() and cr_det_form.is_valid():
+            your_det = your_det_form.save()
+            cr_det = cr_det_form.save()
+            return HttpResponse("Your details and crime report have been registered successfully!!!")
+        else:
+            return render(request, 'report.html', {'your_det_form': your_det_form, 'cr_det_form': cr_det_form})
+    else:
+        your_det_form = YourDetailForm()
+        cr_det_form = CrimeDetailForm()
+        return render(request, 'report.html', {'your_det_form': your_det_form, 'cr_det_form': cr_det_form})
 
 def generate_random_id():
     return random.randint(100000,999999)
@@ -114,3 +74,39 @@ def popup(request):
 
 def record(request):
     return render(request,'records.html')
+
+@permission_required('can_create_crime_report')
+def create_crime_report(request):
+    if request.method == 'POST':
+        form = CrimeReportForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('records')  # redirect to the records list
+    else:
+        form = CrimeReportForm()
+    return render(request, 'create_crime_report.html', {'form': form})
+
+def read_crime_report(request, pk):
+    return render(request, 'read_crime_report.html', {'pk': pk})
+
+def update_crime_report(request, pk):
+    crime_report = CrimeDetail.objects.get(pk=pk)
+    if request.method == "POST":
+        form = CrimeReportForm(request.POST, instance=crime_report)
+        if form.is_valid():
+            form.save()
+            return redirect('crime_reports')
+    else:
+        form = CrimeReportForm(instance=crime_report)
+    return render(request, 'update_crime_report.html', {'form': form})
+
+def delete_crime_report(request, pk):
+    crime_report = CrimeDetail.objects.get(pk=pk)
+    if request.method == "POST":
+        crime_report.delete()
+        return redirect('crime_reports')
+    return render(request, 'delete_crime_report.html', {'crime_report': crime_report})
+
+def userlogout(request):
+    logout(request)
+    return redirect('index')
