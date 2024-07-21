@@ -32,7 +32,8 @@
   
 <fieldset width="50">
 <legend>Your Details</legend>
-<form method="post" action="/report">
+<form method="post">
+  {% csrf_token %}
     <label for="A">First Name:</label>
     <input type="text" placeholder="Enter your First Name" id="A" required> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -58,12 +59,14 @@
     <input type="time" placeholder="Enter current time" required> <br><br><br>
 
     <label>Gender</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="radio" name="gender" id="male">
-          <label for="male">Male</label>&nbsp;&nbsp;&nbsp;
-          <input type="radio" name="gender" id="female">
-          <label for="female">Female</label>&nbsp;&nbsp;&nbsp;
-          <input type="radio" name="gender" id="other">
-          <label for="other">Other</label><br><br><br>
+    <label for="maleA">Male:</label>
+    <input type="radio" id="maleA" name="genderA" value="male" required>
+    
+    <label for="femaleA">Female:</label>
+    <input type="radio" id="femaleA" name="genderA" value="female" required>
+    
+    <label for="otherA">Other:</label>
+    <input type="radio" id="otherA" name="genderA" value="other" required><br><br><br>
 
     <label>Address</label> <br>
     <textarea placeholder="Enter your current Address" rows="5" cols="60" required></textarea> <br><br>
@@ -76,7 +79,8 @@
 
 <fieldset width="50">
 <legend>Crime Details</legend>
-<!--<form method="post" action="/report">-->
+<form method="post">
+  {%csrf_token%}
   <label for="A">Criminal Name:</label>
   <input type="text" placeholder="Enter Criminal Name" id="A"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -99,12 +103,14 @@
   <input type="time" placeholder="Enter current time" required> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
   <label>Gender:</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="radio" name="gender" id="male">
-          <label for="male">Male</label>&nbsp;&nbsp;&nbsp;
-          <input type="radio" name="gender" id="female">
-          <label for="female">Female</label>&nbsp;&nbsp;&nbsp;
-          <input type="radio" name="gender" id="other">
-          <label for="other">Other</label><br><br><br>
+    <label for="maleB">Male:</label>
+    <input type="radio" id="maleB" name="genderB" value="male" required>
+    
+    <label for="femaleB">Female:</label>
+    <input type="radio" id="femaleB" name="genderB" value="female" required>
+    
+    <label for="otherB">Other:</label>
+    <input type="radio" id="otherB" name="genderB" value="other" required><br><br><br>
 
   <label>Crime Spot</label> <br>
   <textarea placeholder="Location of Crime spot" rows="5" cols="50" required></textarea> <br><br>
@@ -116,61 +122,10 @@
 </form>
 </fieldset> <br><hr><br>
 
-<input type="checkbox" id="Terms" value="yes">
-<label for="Terms">I hereby confirm that all the details given by me are True and I agree with the Terms and Conditions.</label>
+<!--<input type="checkbox" id="Terms" value="yes">
+<label for="Terms">I hereby confirm that all the details given by me are True and I agree with the Terms and Conditions.</label>-->
 
 <br><br><br><br>
-     <title>Your details</title>
-     <table>
-        <tr>
-            <td>First Name</td>
-            <td>Middle Name</td>
-            <td>Last Name</td>
-            <td>Age</td>
-            <td>Email id</td>
-            <td>Mobile no</td>
-            <td>Date</td>
-            <td>Address</td>
-        </tr>
-        {% for i in your_det %}
-        <tr>
-            <td>{i.first_name}</td>
-            <td>{i.middle_name}</td>
-            <td>{i.last_name}</td>
-            <td>{i.age}</td>
-            <td>{i.email_id}</td>
-            <td>{i.mobile_no}</td>
-            <td>{i.date}</td>
-            <td>{i.address}</td>
-        </tr>
-        {% endfor %}
-      </table>
-      <br><br>
-        <title>Crime details</title>
-     <table>
-        <tr>
-            <td>First Name</td>
-            <td>Middle Name</td>
-            <td>Last Name</td>
-            <td>Age</td>
-            <td>Email id</td>
-            <td>Mobile no</td>
-            <td>Date</td>
-            <td>Address</td>
-        </tr>
-        {% for i in cr_details %}
-        <tr>
-            <td>{i.criminal_name}</td>
-            <td>{i.middle_name}</td>
-            <td>{i.last_name}</td>
-            <td>{i.age}</td>
-            <td>{i.email_id}</td>
-            <td>{i.mobile_no}</td>
-            <td>{i.date}</td>
-            <td>{i.address}</td>
-        </tr>
-        {% endfor %}
-      </table>
 <style>
 *{
       margin: 0px;

@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User 
 
 # Create your models here.
 class YourDetail(models.Model):
@@ -11,8 +11,11 @@ class YourDetail(models.Model):
     mobile_no = models.IntegerField()
     date = models.DateField()
     address = models.TextField()
+    def __str__(self):
+        return self.first_name
 
 class CrimeDetail(models.Model):
+    case_id = models.CharField(max_length=10, unique=True, default=123456)
     criminal_name = models.CharField(max_length=100)
     nick_name = models.CharField(max_length=100)
     crime_type = models.CharField(max_length=100)
@@ -22,3 +25,6 @@ class CrimeDetail(models.Model):
     gender = models.CharField(max_length=100)
     crime_spot = models.TextField()
     clue = models.TextField()
+    cs_status = models.CharField(max_length=100)
+    def __str__(self):
+        return self.criminal_name

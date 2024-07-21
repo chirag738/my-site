@@ -4,6 +4,7 @@ from home.models import YourDetail, CrimeDetail
 from django.contrib.auth.models import User       
 from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponseRedirect
+import random
 
 # Create your views here.
 def index(request):
@@ -30,7 +31,7 @@ def registerpage(request):
         user = User.objects.create_user(username, email, pass1)
         user.save()
         return redirect('userlogin/')
-    return render(request,'register.html')
+    return render(request,'register.html',locals())
 
 def page(request):
     return render(request,'page.html')
@@ -48,31 +49,68 @@ def userlogin(request):
             return redirect('/page')
         else:
             return render(request,'login.html')
-    return render(request,'login.html')
+    return render(request,'login.html',locals())
     # return render(request,'register.html')
 
-def details(request):
+def report(request):
     if request.method == "POST":
-        name1 = request.POST['First Name']
-        name2 = request.POST['Middle Name']
-        name3 = request.POST['Last Name']
-        age = request.POST['age']
-        email = request.POST['email id']
-        mobile = request.POST['mobile no']
-        date = request.POST['date']
-        address = request.POST['address']
-        your_det = YourDetail(first_name=name1, middle_name=name2, last_name=name3, age=age, email=email, mobile_no=mobile, date=datetime.today()) 
-        your_det.save()
-        crim_name = request.POST['criminal type']
-        nickname = request.POST['criminal nickname']
-        cr_type = request.POST['crime type']
-        date_crime = request.POST['date of crime']
-        cr_age = request.POST['criminal age']
-        gender = request.POST['gender']
-        cr_mob_no = request.POST['criminal mobile no']
-        clue = request.POST['clue about criminal']
-        cr_spot = request.POST['crime spot']
-        cr_details = CrimeDetail(criminal_name=crim_name, nick_name=nickname, crime_type=cr_type, date_of_crime=date_crime, criminal_age=cr_age, gender=gender, crime_mob_no=cr_mob_no, clue=clue, crime_spot=cr_spot)
-        cr_details.save()
-        return HttpResponse("The crime details and your details have been saved successfully!!!")
-    return render(request,'report.html')
+        name1 = request.POST.get('First Name')
+        name2 = request.POST.get('Middle Name')
+        name3 = request.POST.get('Last Name')
+        age = request.POST.get('age')
+        email = request.POST.get('email id')
+        mobile = request.POST.get('mobile no')
+        date = request.POST.get('date')
+        address = request.POST.get('address') 
+        if your_det.is_valid():
+            your_det = YourDetail.objects.create_user(
+                name1=first_name,
+                name2=middle_name,
+                name3=last_name,
+                age=age,
+                email=email_id,
+                date=date,
+                mobile=mobile_no,
+                address=address
+            )
+            your_det.save()
+            return HttpResponse(request,"Your details has been registered successfully!!!")
+        case_id = generate_random_id()
+        crim_name = request.POST.get('criminal type')
+        nickname = request.POST.get('criminal nickname')
+        cr_type = request.POST.get('crime type')
+        date_crime = request.POST.get('date of crime')
+        cr_age = request.POST.get('criminal age')
+        gender = request.POST.get('gender')
+        cr_mob_no = request.POST.get('criminal mobile no')
+        clue = request.POST.get('clue about criminal')
+        cr_spot = request.POST.get('crime spot')
+        case_status = "Pending"
+        if cr_details.is_valid():
+            cr_details = CrimeDetail.objects.create_user(
+                case_id=case_id,
+                crim_name=criminal_name,
+                nickname=nick_name,
+                cr_type=crime_type,
+                date_crime=date_of_crime,
+                cr_age=criminal_age,
+                gender=gender,
+                cr_mob_no=crime_mob_no,
+                clue=clue,
+                cr_spot=crime_spot,
+                case_status=cs_status
+            )
+            cr_details.save()
+            return redirect('popup.html')
+    return render(request,'report.html',locals())
+
+def generate_random_id():
+    return random.randint(100000,999999)
+
+def popup(request):
+    if user is not None:
+        return redirect(request,'records')
+    return render(request,'popup.html',locals())
+
+def record(request):
+    return render(request,'records.html')

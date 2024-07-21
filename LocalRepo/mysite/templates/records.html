@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status</title>
+</head>
+<body>
+    <h3>Your details</h3>
+    <table style="background-color: rgb(28, 162, 240);">
+        <thead style="background-color: rgb(143, 235, 252);">
+         <tr>
+           <th>First Name</th>
+           <th>Middle Name</th>
+           <th>Last Name</th>
+           <th>Age</th>
+           <th>Email id</th>
+           <th>Mobile no</th>
+           <th>Date</th>
+           <th>Address</th>
+         </tr>
+        </thead>
+        <tbody style="background-color: antiquewhite;">
+         {% for i in your_det %}
+         <tr>
+           <td>{{i.name1}}</td>
+           <td>{{i.name2}}</td>
+           <td>{{i.name3}}</td>
+           <td>{{i.age}}</td>
+           <td>{{i.email}}</td>
+           <td>{{i.mobile}}</td>
+           <td>{{i.date}}</td>
+           <td>{{i.address}}</td>
+         </tr>
+         {% endfor %}
+        </tbody>
+    </table>
+    <h3>Crime details</h3>
+    <table style="background-color: rgb(28, 162, 240);">
+        <thead style="background-color: rgb(143, 235, 252);">
+         <tr>
+          <th>Criminal Name</th>
+          <th>Nick Name</th>
+          <th>Crime Type</th>
+          <th>Age</th>
+          <th>Mobile No</th>
+          <th>Date</th>
+          <th>Gender</th>
+          <th>Crime Spot</th>
+          <th>Clue</th>
+         </tr>
+        </thead>
+        <tbody style="background-color: antiquewhite;">
+         {% for i in cr_details %}
+         <tr>
+          <td>{{i.criminal_name}}</td>
+          <td>{{i.nickname}}</td>
+          <td>{{i.cr_type}}</td>
+          <td>{{i.cr_age}}</td>
+          <td>{{i.cr_mob_no}}</td>
+          <td>{{i.date_crime}}</td>
+          <td>{{i.gender}}</td>
+          <td>{{i.crime_spot}}</td>
+          <td>{{i.clue}}</td>
+         </tr>
+         {% endfor %}
+        </tbody>
+    </table>
+    <h3>Report History</h3>
+    <table style="background-color: rgb(28, 162, 240);">
+         <thead style="background-color: rgb(143, 235, 252);">
+             <tr>
+                 <th>Criminal Name</th>
+                 <th>Nick Name</th>
+                 <th>Crime Type</th>
+                 <th>Age</th>
+                 <th>Mobile No</th>
+                 <th>Date</th>
+                 <th>Gender</th>
+                 <th>Crime Spot</th>
+                 <th>Clue</th>
+             </tr>
+         </thead>
+         <tbody style="background-color: antiquewhite;">
+            {% for i in cr_details %}
+            <tr>
+              <td>{{i.criminal_name}}</td>
+              <td>{{i.nickname}}</td>
+              <td>{{i.cr_type}}</td>
+              <td>{{i.cr_age}}</td>
+              <td>{{i.cr_mob_no}}</td>
+              <td>{{i.date_crime}}</td>
+              <td>{{i.gender}}</td>
+              <td>{{i.crime_spot}}</td>
+              <td>{{i.clue}}</td>
+            </tr>
+            {% endfor %}
+         </tbody>
+    </table>
+</body>
+</html>
