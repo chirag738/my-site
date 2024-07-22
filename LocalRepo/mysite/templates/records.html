@@ -7,6 +7,7 @@
 </head>
 <body>
   <script src="static/script.js"></script>
+  {% block content %}
     <h3>Your details</h3>
     <table style="background-color: rgb(28, 162, 240);">
         <thead style="background-color: rgb(143, 235, 252);">
@@ -21,8 +22,8 @@
            <th>Address</th>
          </tr>
         </thead>
-        <tbody style="background-color: antiquewhite;">
-         {% for i in your_det %}
+      <tbody style="background-color: antiquewhite;">
+        {% for i in your_det %}
          <tr>
            <td>{{i.name1}}</td>
            <td>{{i.name2}}</td>
@@ -32,9 +33,13 @@
            <td>{{i.mobile}}</td>
            <td>{{i.date}}</td>
            <td>{{i.address}}</td>
+           <td> 
+            <a href="{% url 'update_your_details' your_det.id %}">Edit</a>
+            <a href="{% url 'delete_your_details' your_det.id %}">Delete</a>
+           </td>
          </tr>
-         {% endfor %}
-        </tbody>
+        {% endfor %}
+      </tbody>
     </table>
     <h3>Crime details</h3>
     <table style="background-color: rgb(28, 162, 240);">
@@ -52,7 +57,7 @@
          </tr>
         </thead>
         <tbody style="background-color: antiquewhite;">
-         {% for i in cr_details %}
+        {% for i in cr_details %}
          <tr>
           <td>{{i.criminal_name}}</td>
           <td>{{i.nickname}}</td>
@@ -63,40 +68,14 @@
           <td>{{i.gender}}</td>
           <td>{{i.crime_spot}}</td>
           <td>{{i.clue}}</td>
+          <td> 
+            <a href="{% url 'update_crime_details' cr_det.id %}">Edit</a>
+            <a href="{% url 'delete_crime_details' cr_det.id %}">Delete</a>
+          </td>
          </tr>
-         {% endfor %}
+        {% endfor %}
         </tbody>
     </table>
-    <h3>Report History</h3>
-    <table style="background-color: rgb(28, 162, 240);">
-         <thead style="background-color: rgb(143, 235, 252);">
-             <tr>
-                 <th>Criminal Name</th>
-                 <th>Nick Name</th>
-                 <th>Crime Type</th>
-                 <th>Age</th>
-                 <th>Mobile No</th>
-                 <th>Date</th>
-                 <th>Gender</th>
-                 <th>Crime Spot</th>
-                 <th>Clue</th>
-             </tr>
-         </thead>
-         <tbody style="background-color: antiquewhite;">
-            {% for i in cr_details %}
-            <tr>
-              <td>{{i.criminal_name}}</td>
-              <td>{{i.nickname}}</td>
-              <td>{{i.cr_type}}</td>
-              <td>{{i.cr_age}}</td>
-              <td>{{i.cr_mob_no}}</td>
-              <td>{{i.date_crime}}</td>
-              <td>{{i.gender}}</td>
-              <td>{{i.crime_spot}}</td>
-              <td>{{i.clue}}</td>
-            </tr>
-            {% endfor %}
-         </tbody>
-    </table>
+  {% endblock %}
 </body>
 </html>

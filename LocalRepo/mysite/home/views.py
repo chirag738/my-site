@@ -1,11 +1,12 @@
 from django.shortcuts import render, HttpResponse, redirect
 from datetime import datetime
-from home.models import YourDetail, CrimeDetail, CrimeDetailForm, YourDetailForm 
+from home.models import YourDetail, CrimeDetail
 from django.contrib.auth.models import User       
 from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import permission_required
 import random
+from mysite.forms import YourDetailsForm, CrimeDetailsForm 
 
 # Create your views here.
 def index(request):
@@ -51,8 +52,8 @@ def userlogin(request):
 
 def report(request):
     if request.method == "POST":
-        your_det_form = YourDetailForm(request.POST)
-        cr_det_form = CrimeDetailForm(request.POST)
+        your_det_form = YourDetailsForm(request.POST)
+        cr_det_form = CrimeDetailsForm(request.POST)
         if your_det_form.is_valid() and cr_det_form.is_valid():
             your_det = your_det_form.save()
             cr_det = cr_det_form.save()
@@ -60,52 +61,81 @@ def report(request):
         else:
             return render(request, 'report.html', {'your_det_form': your_det_form, 'cr_det_form': cr_det_form})
     else:
-        your_det_form = YourDetailForm()
-        cr_det_form = CrimeDetailForm()
+        your_det_form = YourDetailsForm()
+        cr_det_form = CrimeDetailsForm()
         return render(request, 'report.html', {'your_det_form': your_det_form, 'cr_det_form': cr_det_form})
 
 def generate_random_id():
     return random.randint(100000,999999)
 
 def popup(request):
+    user = User.objects.all()
     if user is not None:
         return redirect(request,'records')
     return render(request,'popup.html',locals())
 
+def create_your_details(request):
+    if request.method == 'POST':
+        form = YourDetailsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('records')
+    else:
+        form = YourDetailsForm()
+    return render(request, 'records.html', {'form': form})    
+        
 def record(request):
-    return render(request,'records.html')
+    your_det = YourDetail.objects.all()
+    cr_det = CrimeDetail.objects.all()
+    form = YourDetailsForm()
+    return render(request,'records.html',  {'your_det': your_det, 'cr_det': cr_det, 'form': form})
 
 @permission_required('can_create_crime_report')
-def create_crime_report(request):
+def create_crime_details(request):
     if request.method == 'POST':
-        form = CrimeReportForm(request.POST)
+        form = CrimeDetailsForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('records')  # redirect to the records list
     else:
-        form = CrimeReportForm()
-    return render(request, 'create_crime_report.html', {'form': form})
+        form = CrimeDetailsForm()
+    return render(request, 'records.html', {'form': form})
 
 def read_crime_report(request, pk):
-    return render(request, 'read_crime_report.html', {'pk': pk})
+    return render(request, 'records.html', {'pk': pk})
 
-def update_crime_report(request, pk):
+def update_crime_details(request, pk):
     crime_report = CrimeDetail.objects.get(pk=pk)
     if request.method == "POST":
-        form = CrimeReportForm(request.POST, instance=crime_report)
+        form = CrimeDetailsForm(request.POST, instance=crime_report)
         if form.is_valid():
             form.save()
-            return redirect('crime_reports')
+            return redirect('records')
     else:
-        form = CrimeReportForm(instance=crime_report)
-    return render(request, 'update_crime_report.html', {'form': form})
+        form = CrimeDetailsForm(instance=crime_report)
+    return render(request, 'records.html', {'form': form})
 
-def delete_crime_report(request, pk):
-    crime_report = CrimeDetail.objects.get(pk=pk)
+def update_your_details(request, pk):
+    crime_report = YourDetail.objects.get(pk=pk)
     if request.method == "POST":
-        crime_report.delete()
-        return redirect('crime_reports')
-    return render(request, 'delete_crime_report.html', {'crime_report': crime_report})
+        form = YourDetailsForm(request.POST, instance=crime_report)
+        if form.is_valid():
+            form.save()
+            return redirect('records')
+    else:
+        form = YourDetailsForm(instance=crime_report)
+    return render(request, 'records.html', {'form': form})
+
+def delete_crime_details(request, pk):
+    cr_det = CrimeDetail.objects.get(pk=pk)
+    cr_det.delete()
+    return redirect('records')
+
+def delete_your_details(request, pk):
+    your_det = YourDetail.objects.get(pk=pk)
+    your_det.delete()
+    return redirect('records')
+
 
 def userlogout(request):
     logout(request)
