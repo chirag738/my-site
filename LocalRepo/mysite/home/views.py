@@ -65,16 +65,16 @@ def report(request):
         cr_det_form = CrimeDetailsForm()
         return render(request, 'report.html', {'your_det_form': your_det_form, 'cr_det_form': cr_det_form})
 
-def generate_random_id():
+def generateRandomId():
     return random.randint(100000,999999)
 
-def popup(request):
+def popUp(request):
     user = User.objects.all()
     if user is not None:
         return redirect(request,'records')
     return render(request,'popup.html',locals())
 
-def create_your_details(request):
+def createYourDetails(request):
     if request.method == 'POST':
         form = YourDetailsForm(request.POST)
         if form.is_valid():
@@ -84,14 +84,17 @@ def create_your_details(request):
         form = YourDetailsForm()
     return render(request, 'records.html', {'form': form})    
         
-def record(request):
+def recordPage(request):
+    print("record is returned here")
     your_det = YourDetail.objects.all()
+    print(your_det)
+    print(type(your_det))
     cr_det = CrimeDetail.objects.all()
     form = YourDetailsForm()
     return render(request,'records.html',  {'your_det': your_det, 'cr_det': cr_det, 'form': form})
 
 @permission_required('can_create_crime_report')
-def create_crime_details(request):
+def createCrimeDetails(request):
     if request.method == 'POST':
         form = CrimeDetailsForm(request.POST)
         if form.is_valid():
@@ -101,10 +104,10 @@ def create_crime_details(request):
         form = CrimeDetailsForm()
     return render(request, 'records.html', {'form': form})
 
-def read_crime_report(request, pk):
+def readCrimeReport(request, pk):
     return render(request, 'records.html', {'pk': pk})
 
-def update_crime_details(request, pk):
+def updateCrimeDetails(request, pk):
     crime_report = CrimeDetail.objects.get(pk=pk)
     if request.method == "POST":
         form = CrimeDetailsForm(request.POST, instance=crime_report)
@@ -115,8 +118,9 @@ def update_crime_details(request, pk):
         form = CrimeDetailsForm(instance=crime_report)
     return render(request, 'records.html', {'form': form})
 
-def update_your_details(request, pk):
-    crime_report = YourDetail.objects.get(pk=pk)
+def updateYourDetails(request,id):
+    print("this is running 1234567890")
+    crime_report = YourDetail.objects.get(pk=id)
     if request.method == "POST":
         form = YourDetailsForm(request.POST, instance=crime_report)
         if form.is_valid():
@@ -124,19 +128,20 @@ def update_your_details(request, pk):
             return redirect('records')
     else:
         form = YourDetailsForm(instance=crime_report)
-    return render(request, 'records.html', {'form': form})
+    return render(request, 'records.html')
 
-def delete_crime_details(request, pk):
+def deleteYourDetails(request, id):
+    your_det = YourDetail.objects.get(pk=id)
+    your_det.delete()
+    return redirect('records')
+
+def deleteCrimeDetails(request, pk):
     cr_det = CrimeDetail.objects.get(pk=pk)
     cr_det.delete()
     return redirect('records')
 
-def delete_your_details(request, pk):
-    your_det = YourDetail.objects.get(pk=pk)
-    your_det.delete()
-    return redirect('records')
 
 
-def userlogout(request):
+def userLogout(request):
     logout(request)
     return redirect('index')
